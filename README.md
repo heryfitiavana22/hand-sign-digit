@@ -2,6 +2,13 @@
 
 `hand sign digit` is an application that recognizes hand gestures corresponding to numbers using a pre-trained model created with [MediaPipe](https://ai.google.dev/edge/mediapipe/solutions/guide?hl=fr). Link to the demo: [hand-sign-digit](https://hand-sign-digit.vercel.app/)
 
+## Video Demo
+
+
+https://github.com/user-attachments/assets/8e582dd5-9b5d-4329-8354-56f8f1f45fc4
+
+
+
 ## Features
 
 - Detects hand gestures representing numbers in real-time using a webcam.
