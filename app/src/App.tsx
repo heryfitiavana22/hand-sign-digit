@@ -22,7 +22,6 @@ function App() {
           } else {
             setNumberRecognized(undefined);
           }
-          console.log(detections);
         };
       }
     }
@@ -51,7 +50,7 @@ function App() {
     return () => clearInterval(interval);
   }, [gestureRecognizer]);
 
-  if (!gestureRecognizer) return <div>loading...</div>;
+  if (!gestureRecognizer) return <p className="loading-text">loading...</p>;
 
   return (
     <div className="container">
@@ -68,7 +67,6 @@ function App() {
           <p className="number-recognized">{numberRecognized}</p>
         )}
       </div>
-      <button onClick={capture}>Capture</button>
     </div>
   );
 }
