@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -54,6 +58,7 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  padding: 10px;
 }
 
 .webcam-container {
@@ -64,6 +69,8 @@ button:focus-visible {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 640px;
+  max-height: 480px;
 }
 
 .number-recognized {
@@ -84,6 +91,7 @@ button:focus-visible {
   height: 100%;
   font-size: 24px;
   color: #1a1a1a;
+  text-align: center;
 }
 
 .error-container {
@@ -95,4 +103,5 @@ button:focus-visible {
 .error-text {
   font-size: 18px;
   color: #ff0000;
+  text-align: center;
 }
