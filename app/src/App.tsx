@@ -7,6 +7,7 @@ function App() {
   const [gestureRecognizer, setGestureRecognizer] =
     useState<GestureRecognizer>();
   const [numberRecognized, setNumberRecognized] = useState<number>();
+  const [hasCamera, setHasCamera] = useState(true);
 
   const capture = async () => {
     if (webcamRef.current && gestureRecognizer) {
@@ -29,6 +30,16 @@ function App() {
 
   useEffect(() => {
     async function init() {
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      const webcamDevice = devices.find(
+        (device) => device.kind === "videoinput"
+      );
+
+      if (!webcamDevice) {
+        setHasCamera(false);
+        return;
+      }
+
       const vision = await FilesetResolver.forVisionTasks(
         "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision/wasm"
       );
@@ -50,21 +61,36 @@ function App() {
     return () => clearInterval(interval);
   }, [gestureRecognizer]);
 
-  if (!gestureRecognizer) return <p className="loading-text">loading...</p>;
+  if (!hasCamera)
+    return (
+      <div className="error-container">
+        <p className="error-text">
+          No camera found. Please connect a camera and try again.
+        </p>
+      </div>
+    );
 
   return (
     <div className="container">
       <div className="webcam-container">
-        <Webcam
-          audio={false}
-          ref={webcamRef}
-          screenshotFormat="image/jpeg"
-          width={640}
-          height={480}
-          className="webcam"
-        />
-        {numberRecognized !== undefined && (
-          <p className="number-recognized">{numberRecognized}</p>
+        {gestureRecognizer ? (
+          <>
+            <Webcam
+              audio={false}
+              ref={webcamRef}
+              screenshotFormat="image/jpeg"
+              width={640}
+              height={480}
+              className="webcam"
+            />
+            {numberRecognized !== undefined && (
+              <p className="number-recognized">{numberRecognized}</p>
+            )}
+          </>
+        ) : (
+          <p className="loading-text">
+            loading, it may take a few seconds...
+          </p>
         )}
       </div>
     </div>

@@ -78,10 +78,21 @@ button:focus-visible {
 }
 
 .loading-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
   font-size: 24px;
   color: #1a1a1a;
+}
+
+.error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.error-text {
+  font-size: 18px;
+  color: #ff0000;
 }
